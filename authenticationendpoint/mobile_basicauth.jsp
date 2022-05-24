@@ -41,11 +41,10 @@
 
 <jsp:directive.include file="includes/init-loginform-action-url.jsp"/>
 <script>
-    function goBack() {
-        window.history.back();
-    }
 
     // Handle form submission preventing double submission.
+    window.jqueryReady =  window.jqueryReady || [];
+    window.jqueryReady.push(function ($){
     $(document).ready(function(){
         $.fn.preventDoubleSubmission = function() {
             $(this).on('submit',function(e){
@@ -88,6 +87,7 @@
         };
         $('#loginForm').preventDoubleSubmission();
     });
+    })
 
     function showResendReCaptcha() {
         <% if (reCaptchaResendEnabled) { %>
